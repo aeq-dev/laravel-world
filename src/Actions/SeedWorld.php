@@ -186,9 +186,9 @@ class SeedWorld extends Seeder
     private function seedCities(Models\Country $country, Models\State $state, array $cities): void
     {
         // state schema
-        $cityFields = Schema::getColumnListing(config('world.migrations.cities.table_name'));
+        $cityFields = Schema::getColumnListing(config('laravel-world.migrations.cities.table_name'));
 
-        $this->forgetFields($cityFields, ['id', 'country_id', 'state_id']);
+        $this->forgetFields($cityFields, ['id', 'state_id']);
 
         foreach (array_chunk($cities, 20) as $cityChunks) {
 

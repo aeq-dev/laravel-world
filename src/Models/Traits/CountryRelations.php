@@ -16,6 +16,13 @@ trait CountryRelations
 		return $this->hasMany(Models\State::class, 'country_id', 'id');
 	}
 
+	/**
+	 * @return hasManyThrough
+	 */
+	public function cities()
+	{
+		return $this->hasManyThrough(Models\City::class, Models\State::class, 'country_id', 'state_id', 'id', 'id');
+	}
 
 	/**
 	 * @return HasMany
