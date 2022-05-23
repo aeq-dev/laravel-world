@@ -115,25 +115,25 @@ It's just an eloquent so you may run whetever your want
     use Bkfdev\World\World;
 ```
 
-### Get All countries :
+###### Get All countries :
 
 ```bash
     $countries = World::Countries();
 ```
 
-### Get country by code iso2 or iso3 :
+###### Get country by code iso2 or iso3 :
 
 ```bash
     $country = World::getCountryByCode($code);
 ```
 
-### Get country by name :
+###### Get country by name :
 
 ```bash
     $country = World::getCountryByName($name);
 ```
 
-### Get states of a give country by code :
+###### Get states of a give country by code :
 
 ```bash
     $states = World::getStatesOfCountry($code);
