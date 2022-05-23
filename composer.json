@@ -1,0 +1,41 @@
+{
+    "name": "bkfdev/laravel-world",
+    "description": ":package_description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdelkader BKF",
+            "email": "bkfdev@gmail.com",
+            "homepage": "https://bkfdev.com"
+        }
+    ],
+    "homepage": "https://github.com/bkfdev/laravel-world",
+    "keywords": ["Laravel", "Laravel-World", "World", "Countries", "States", "Cities", "Currencies"],
+    "require": {
+        "illuminate/support": "~9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bkfdev\\World\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bkfdev\\World\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bkfdev\\World\\LaravelWorldServiceProvider"
+            ],
+            "aliases": {
+                "LaravelWorld": "Bkfdev\\World\\Facades\\LaravelWorld"
+            }
+        }
+    }
+}
