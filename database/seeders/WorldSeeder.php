@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
+use Bkfdev\World\Actions\SeedWorld;
 use Illuminate\Database\Seeder;
-use Bkfdev\World\Actions\SeedAction;
 
 class WorldSeeder extends Seeder
 {
 	public function run()
 	{
 		$this->call([
-			SeedAction::class,
+			SeedWorld::class,
 		]);
 	}
 }

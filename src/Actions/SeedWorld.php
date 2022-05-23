@@ -1,6 +1,6 @@
 <?php
 
-namespace Nnjeim\World\Actions;
+namespace Bkfdev\World\Actions;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -8,7 +8,7 @@ use Bkfdev\World\Models;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-class SeedAction extends Seeder
+class SeedWorld extends Seeder
 {
     private array $countries = [
         'data' => [],
