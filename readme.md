@@ -80,12 +80,7 @@ return [
         'currencies' => true,
         'languages' => true,
     ],
-    /*
-	|--------------------------------------------------------------------------
-	| Routes.
-	|--------------------------------------------------------------------------
-	*/
-    'routes' => true,
+
     /*
 	|--------------------------------------------------------------------------
 	| Migrations.
@@ -95,103 +90,8 @@ return [
         'countries' => [
             'table_name' => 'world_countries',
             'optional_fields' => [
-                'phone_code' => [
-                    'required' => true,
-                    'type' => 'string',
-                    'length' => 5,
-                ],
-                'iso3' => [
-                    'required' => true,
-                    'type' => 'string',
-                    'length' => 3,
-                ],
-                'native' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'region' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'subregion' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'latitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'longitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'emoji' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'emojiU' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-            ],
-        ],
-        'states' => [
-            'table_name' => 'world_states',
-            'optional_fields' => [
-                'country_code' => [
-                    'required' => false,
-                    'type' => 'string',
-                    'length' => 3,
-                ],
-                'state_code' => [
-                    'required' => false,
-                    'type' => 'string',
-                    'length' => 3,
-                ],
-                'latitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'longitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-            ],
-        ],
-        'cities' => [
-            'table_name' => 'world_cities',
-            'optional_fields' => [
-                'country_code' => [
-                    'required' => false,
-                    'type' => 'string',
-                    'length' => 3,
-                ],
-                'state_code' => [
-                    'required' => false,
-                    'type' => 'string',
-                    'length' => 3,
-                ],
-                'latitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-                'longitude' => [
-                    'required' => true,
-                    'type' => 'string',
-                ],
-            ],
-        ],
-        'timezones' => [
-            'table_name' => 'world_timezones',
-        ],
-        'currencies' => [
-            'table_name' => 'world_currencies',
-        ],
-        'languages' => [
-            'table_name' => 'world_languages',
-        ],
-    ],
-];
+
+    ...
 
 ```
 
