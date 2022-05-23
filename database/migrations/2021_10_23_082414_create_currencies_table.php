@@ -13,7 +13,7 @@ class CreateCurrenciesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create(config('world.migrations.currencies.table_name'), function (Blueprint $table) {
+		Schema::create(config('laravel-world.migrations.currencies.table_name'), function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('country_id');
 			$table->string('name');
@@ -34,6 +34,6 @@ class CreateCurrenciesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists(config('world.migrations.currencies.table_name'));
+		Schema::dropIfExists(config('laravel-world.migrations.currencies.table_name'));
 	}
 }

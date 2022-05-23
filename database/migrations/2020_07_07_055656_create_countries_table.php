@@ -13,13 +13,13 @@ class CreateCountriesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create(config('world.migrations.countries.table_name'), function (Blueprint $table) {
+		Schema::create(config('laravel-world.migrations.countries.table_name'), function (Blueprint $table) {
 			$table->id();
 			$table->string('iso2', 2);
 			$table->string('name');
 			$table->tinyInteger('status')->default(1);
 
-			foreach (config('world.migrations.countries.optional_fields') as $field => $value) {
+			foreach (config('laravel-world.migrations.countries.optional_fields') as $field => $value) {
 				if ($value['required']) {
 					$table->string($field, $value['length'] ?? null);
 				}
@@ -34,6 +34,6 @@ class CreateCountriesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists(config('world.migrations.countries.table_name'));
+		Schema::dropIfExists(config('laravel-world.migrations.countries.table_name'));
 	}
 }

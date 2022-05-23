@@ -31,6 +31,6 @@ class Currency extends Model
 	 */
 	public function getTable(): string
 	{
-		return config('world.migrations.currencies.table_name', parent::getTable());
+		return config('laravel-world.migrations.currencies.table_name', parent::getTable());
 	}
 }

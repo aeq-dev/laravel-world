@@ -13,7 +13,7 @@ class LaravelWorldServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'world');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'laravel-world');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         if ($this->app->runningInConsole()) {
@@ -64,8 +64,8 @@ class LaravelWorldServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../database/seeders/' => base_path('database/seeders')], 'seeders');
 
         $this->publishes([
-            __DIR__ . '/../resources/lang' => base_path('lang/vendor/world'),
-        ], 'world');
+            __DIR__ . '/../resources/lang' => base_path('lang/vendor/laravel-world'),
+        ], 'laravel-world');
 
         $this->commands([
             \Bkfdev\World\Console\InitCommand::class,

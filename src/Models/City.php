@@ -21,6 +21,6 @@ class City extends Model
 	 */
 	public function getTable(): string
 	{
-		return config('world.migrations.cities.table_name', parent::getTable());
+		return config('laravel-world.migrations.cities.table_name', parent::getTable());
 	}
 }

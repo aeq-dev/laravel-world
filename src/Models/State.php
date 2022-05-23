@@ -21,6 +21,6 @@ class State extends Model
 	 */
 	public function getTable(): string
 	{
-		return config('world.migrations.states.table_name', parent::getTable());
+		return config('laravel-world.migrations.states.table_name', parent::getTable());
 	}
 }

@@ -24,6 +24,6 @@ class Timezone extends Model
 	 */
 	public function getTable(): string
 	{
-		return config('world.migrations.timezones.table_name', parent::getTable());
+		return config('laravel-world.migrations.timezones.table_name', parent::getTable());
 	}
 }

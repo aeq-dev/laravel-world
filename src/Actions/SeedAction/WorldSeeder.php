@@ -46,7 +46,7 @@ class SeedAction extends Seeder
         // countries
         $this->initCountries();
         // init modules
-        foreach (config('world.modules') as $module => $enabled) {
+        foreach (config('laravel-world.modules') as $module => $enabled) {
             if ($enabled) {
                 $this->modules[$module]['enabled'] = true;
                 $this->initModule($module);
@@ -61,7 +61,7 @@ class SeedAction extends Seeder
         $this->command->getOutput()->progressStart(count($this->countries['data']));
 
         // country schema
-        $countryFields = Schema::getColumnListing(config('world.migrations.countries.table_name'));
+        $countryFields = Schema::getColumnListing(config('laravel-world.migrations.countries.table_name'));
 
         $this->forgetFields($countryFields, ['id']);
 
@@ -133,13 +133,13 @@ class SeedAction extends Seeder
     {
         app(Models\Country::class)->truncate();
         $this->countries['data'] = json_decode(File::get(__DIR__ . '/../../resources/json/countries.json'), true);
-        if (!empty(config('world.allowed_countries')))
+        if (!empty(config('laravel-world.allowed_countries')))
             $this->countries['data'] = Arr::where($this->countries['data'], function ($value, $key) {
-                return in_array($value['iso2'], config('world.allowed_countries'));
+                return in_array($value['iso2'], config('laravel-world.allowed_countries'));
             });
-        if (!empty(config('world.disallowed_countries')))
+        if (!empty(config('laravel-world.disallowed_countries')))
             $this->countries['data'] = Arr::where($this->countries['data'], function ($value, $key) {
-                return !in_array($value['iso2'], config('world.disallowed_countries'));
+                return !in_array($value['iso2'], config('laravel-world.disallowed_countries'));
             });
     }
 
@@ -152,7 +152,7 @@ class SeedAction extends Seeder
         // country states and cities
         $countryStates = Arr::where($this->modules['states']['data'], fn ($state) => $state['country_id'] === $countryArray['id']);
         // state schema
-        $stateFields = Schema::getColumnListing(config('world.migrations.states.table_name'));
+        $stateFields = Schema::getColumnListing(config('laravel-world.migrations.states.table_name'));
 
         $this->forgetFields($stateFields, ['id', 'country_id']);
 

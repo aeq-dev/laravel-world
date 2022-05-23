@@ -22,6 +22,6 @@ class Language extends Model
 	 */
 	public function getTable(): string
 	{
-		return config('world.migrations.languages.table_name', parent::getTable());
+		return config('laravel-world.migrations.languages.table_name', parent::getTable());
 	}
 }
