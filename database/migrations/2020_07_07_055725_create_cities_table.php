@@ -15,7 +15,6 @@ class CreateCitiesTable extends Migration
 	{
 		Schema::create(config('laravel-world.migrations.cities.table_name'), function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('country_id');
 			$table->foreignId('state_id');
 			$table->string('name');
 
