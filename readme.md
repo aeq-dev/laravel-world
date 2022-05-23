@@ -14,7 +14,7 @@ It can be consumed with the World Facade
 Via Composer
 
 ```bash
-$ composer require bkfdev/laravel-world
+    composer require bkfdev/laravel-world
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ Please see the [changelog](changelog.md) for more information on what has change
 ## Testing
 
 ```bash
-$ composer test
+    composer test
 ```
 
 ## Contributing
