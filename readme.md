@@ -109,6 +109,36 @@ return [
 
 ## Usage
 
+It's just an eloquent so you may run whetever your want
+
+```bash
+    use Bkfdev\World\World;
+```
+
+### Get All countries :
+
+```bash
+    $countries = World::Countries();
+```
+
+### Get country by code iso2 or iso3 :
+
+```bash
+    $country = World::getCountryByCode($code);
+```
+
+### Get country by name :
+
+```bash
+    $country = World::getCountryByName($name);
+```
+
+### Get states of a give country by code :
+
+```bash
+    $states = World::getStatesOfCountry($code);
+```
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
