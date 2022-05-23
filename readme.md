@@ -125,6 +125,22 @@ It's just an eloquent so you may run whetever your want
 
 ```bash
     $country = World::getCountryByCode($code);
+    return :
+    [
+        "id" => 1
+        "iso2" => "DZ"
+        "name" => "Algeria"
+        "status" => 1
+        "phone_code" => "213"
+        "iso3" => "DZA"
+        "native" => "الجزائر"
+        "region" => "Africa"
+        "subregion" => "Northern Africa"
+        "latitude" => "28.00000000"
+        "longitude" => "3.00000000"
+        "emoji" => "🇩🇿"
+        "emojiU" => "U+1F1E9 U+1F1FF"
+    ]
 ```
 
 ###### Get country by name :
