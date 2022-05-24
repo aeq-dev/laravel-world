@@ -1,18 +1,18 @@
 <?php
 
-namespace Bkfdev\World\Actions;
+namespace Bkfdev\World\Console;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
+use Illuminate\Console\Command;
 use Bkfdev\World\Models;
-use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-class SeedWorld extends Seeder
+class AddCountryCommand extends Command
 {
-    private array $countries = [
-        'data' => [],
-    ];
+    protected $signature = 'world:add {country* : iso2 separated by comma} --queue';
+
+    protected $description = 'Add new country from json data into DB';
 
     private array $modules = [
         'states' => [
@@ -41,31 +41,40 @@ class SeedWorld extends Seeder
         ],
     ];
 
-    public function __construct()
+
+    public function handle()
     {
-        // countries
-        $this->initCountries();
-        // init modules
+        $country_codes = $this->argument('country');
+        $this->getOutput()->block('Start Adding...');
+
+        $bar = $this->output->createProgressBar(count($country_codes));
+        $bar->start();
+        // Ensure country codes are uppercase        
+        $iso2 = [];
+        foreach ($country_codes as $key => $value) {
+            $iso2[] = strtoupper($value);
+        }
+        // Prepare Modules
+
         foreach (config('laravel-world.modules') as $module => $enabled) {
             if ($enabled) {
                 $this->modules[$module]['enabled'] = true;
                 $this->initModule($module);
             }
         }
-    }
 
-    public function run(): void
-    {
-        $this->command->getOutput()->block('Seeding start');
-
-        $this->command->getOutput()->progressStart(count($this->countries['data']));
-
-        // country schema
+        // Get Countries 
         $countryFields = Schema::getColumnListing(config('laravel-world.migrations.countries.table_name'));
 
         $this->forgetFields($countryFields, ['id']);
 
-        foreach (array_chunk($this->countries['data'], 20) as $countryChunks) {
+        $countries = json_decode(File::get(__DIR__ . '/../../resources/json/countries.json'), true);
+
+        $countries = Arr::where($countries, function ($value, $key) use ($iso2) {
+            return in_array($value['iso2'], $iso2);
+        });
+        //dd($countries);
+        foreach (array_chunk($countries, 20) as $countryChunks) {
 
             foreach ($countryChunks as $countryArray) {
 
@@ -76,6 +85,7 @@ class SeedWorld extends Seeder
                 if ($this->isModuleEnabled('states')) {
                     $this->seedStates($country, $countryArray);
                 }
+
                 // timezones
                 if ($this->isModuleEnabled('timezones')) {
                     $this->seedTimezones($country, $countryArray);
@@ -85,7 +95,7 @@ class SeedWorld extends Seeder
                     $this->seedCurrencies($country, $countryArray);
                 }
 
-                $this->command->getOutput()->progressAdvance();
+                $bar->advance();
             }
         }
 
@@ -94,9 +104,9 @@ class SeedWorld extends Seeder
             $this->seedLanguages();
         }
 
-        $this->command->getOutput()->progressFinish();
+        $bar->finish();
 
-        $this->command->getOutput()->block('Seeding end');
+        $this->getOutput()->info('Done!');
     }
 
     /**
@@ -124,23 +134,6 @@ class SeedWorld extends Seeder
     private function isModuleEnabled(string $module): bool
     {
         return $this->modules[$module]['enabled'];
-    }
-
-    /**
-     * @return void
-     */
-    private function initCountries(): void
-    {
-        app(Models\Country::class)->truncate();
-        $this->countries['data'] = json_decode(File::get(__DIR__ . '/../../resources/json/countries.json'), true);
-        if (!empty(config('laravel-world.allowed_countries')))
-            $this->countries['data'] = Arr::where($this->countries['data'], function ($value, $key) {
-                return in_array($value['iso2'], config('laravel-world.allowed_countries'));
-            });
-        if (!empty(config('laravel-world.disallowed_countries')))
-            $this->countries['data'] = Arr::where($this->countries['data'], function ($value, $key) {
-                return !in_array($value['iso2'], config('laravel-world.disallowed_countries'));
-            });
     }
 
     /**
@@ -172,7 +165,7 @@ class SeedWorld extends Seeder
                         fn ($city) => $city['state_id'] === $stateArray['id']
                     );
 
-                    $this->seedCities($state, $stateCities);
+                    $this->seedCities($country, $state, $stateCities);
                 }
             }
         }
@@ -183,7 +176,7 @@ class SeedWorld extends Seeder
      * @param  Models\State  $state
      * @param  array  $cities
      */
-    private function seedCities(Models\State $state, array $cities): void
+    private function seedCities(Models\Country $country, Models\State $state, array $cities): void
     {
         // state schema
         $cityFields = Schema::getColumnListing(config('laravel-world.migrations.cities.table_name'));

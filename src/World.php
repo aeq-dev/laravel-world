@@ -4,6 +4,7 @@ namespace Bkfdev\World;
 
 use Illuminate\Support\Str;
 use Bkfdev\World\Models\Country;
+use Illuminate\Support\Facades\File;
 
 class World
 {
@@ -31,5 +32,10 @@ class World
     public static function getStatesOfCountry($code)
     {
         return self::getCountryByCode($code)->states;
+    }
+
+    public static function getCountriesFromJson()
+    {
+        return json_decode(File::get(__DIR__ . '/../resources/json/countries.json'), true);
     }
 }

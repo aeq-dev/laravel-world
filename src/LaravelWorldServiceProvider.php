@@ -2,7 +2,9 @@
 
 namespace Bkfdev\World;
 
+use Bkfdev\World\Console\InitCommand;
 use Illuminate\Support\ServiceProvider;
+use Bkfdev\World\Console\AddCountryCommand;
 
 class LaravelWorldServiceProvider extends ServiceProvider
 {
@@ -68,7 +70,8 @@ class LaravelWorldServiceProvider extends ServiceProvider
         ], 'laravel-world');
 
         $this->commands([
-            \Bkfdev\World\Console\InitCommand::class,
+            InitCommand::class,
+            AddCountryCommand::class,
         ]);
     }
 }

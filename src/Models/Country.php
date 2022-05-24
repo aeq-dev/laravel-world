@@ -14,11 +14,6 @@ class Country extends Model
 
 	public $timestamps = false;
 
-	/**
-	 * Get the table associated with the model.
-	 *
-	 * @return string
-	 */
 	public function getTable(): string
 	{
 		return config('laravel-world.migrations.countries.table_name', parent::getTable());
