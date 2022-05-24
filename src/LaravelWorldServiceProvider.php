@@ -21,6 +21,10 @@ class LaravelWorldServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
+
+        $this->commands([
+            AddCountryCommand::class,
+        ]);
     }
 
     /**
@@ -71,7 +75,6 @@ class LaravelWorldServiceProvider extends ServiceProvider
 
         $this->commands([
             InitCommand::class,
-            AddCountryCommand::class,
         ]);
     }
 }

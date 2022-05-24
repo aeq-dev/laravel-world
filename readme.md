@@ -107,6 +107,12 @@ return [
     php artisan world:init
 ```
 
+Or you may add some countries by running this command :
+
+```bash
+    php artisan world:add us sa dz
+```
+
 ## Usage
 
 It's just an eloquent so you may run whetever your want
