@@ -2,6 +2,7 @@
 
 namespace Bkfdev\World;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Bkfdev\World\Models\Country;
 use Illuminate\Support\Facades\File;
@@ -37,5 +38,14 @@ class World
     public static function getCountriesFromJson()
     {
         return json_decode(File::get(__DIR__ . '/../resources/json/countries.json'), true);
+    }
+
+    public static function getCountryFromJson($country_code)
+    {
+        $countries = json_decode(File::get(__DIR__ . '/../resources/json/countries.json'), true);
+        $result =  array_values(Arr::where($countries, function ($value, $key) use ($country_code) {
+            return $value['iso2'] === $country_code;
+        }));
+        return count($result)  ? (object) $result[0] : null;
     }
 }

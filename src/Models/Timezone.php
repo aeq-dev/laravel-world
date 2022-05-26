@@ -2,12 +2,15 @@
 
 namespace Bkfdev\World\Models;
 
-use Bkfdev\World\Models\Traits\TimezoneRelations;
-
 use Illuminate\Database\Eloquent\Model;
+
+use Bkfdev\World\Models\Traits\TimezoneRelations;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Timezone extends Model
 {
+	use Cachable;
+
 	use TimezoneRelations;
 
 	protected $fillable = [

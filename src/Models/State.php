@@ -2,13 +2,16 @@
 
 namespace Bkfdev\World\Models;
 
-use Bkfdev\World\Models\Traits\StateRelations;
-
 use Illuminate\Database\Eloquent\Model;
+
+use Bkfdev\World\Models\Traits\StateRelations;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class State extends Model
 {
 	use StateRelations;
+	use Cachable;
+
 
 	protected $guarded = [];
 

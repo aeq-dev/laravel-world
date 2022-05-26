@@ -2,13 +2,15 @@
 
 namespace Bkfdev\World\Models;
 
-use Bkfdev\World\Models\Traits\CurrencyRelations;
-
 use Illuminate\Database\Eloquent\Model;
+
+use Bkfdev\World\Models\Traits\CurrencyRelations;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Currency extends Model
 {
 	use CurrencyRelations;
+	use Cachable;
 
 	protected $fillable = [
 		'country_id',
