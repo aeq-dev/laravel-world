@@ -5,12 +5,13 @@ namespace Bkfdev\World\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\StateRelations;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+
+//use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class State extends Model
 {
 	use StateRelations;
-	use Cachable;
+	//use Cachable;
 
 
 	protected $guarded = [];

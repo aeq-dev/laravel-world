@@ -11,14 +11,7 @@
     ],
     "homepage": "https://github.com/bkfdev/laravel-world",
     "keywords": ["Laravel", "Laravel-World", "World", "Countries", "States", "Cities", "Currencies"],
-    "require": {
-        "illuminate/support": "~9",
-        "genealabs/laravel-model-caching": "^0.12.4"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~9.0",
-        "orchestra/testbench": "~7"
-    },
+       
     "autoload": {       
         "psr-4": {
             "Bkfdev\\World\\": "src/"
