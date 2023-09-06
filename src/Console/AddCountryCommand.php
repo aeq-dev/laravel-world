@@ -78,23 +78,26 @@ class AddCountryCommand extends Command
 
             foreach ($countryChunks as $countryArray) {
 
-                $countryArray = array_map(fn ($field) => gettype($field) === 'string' ? trim($field) : $field, $countryArray);
+                $countryArray = array_map(fn($field) => gettype($field) === 'string' ? trim($field) : $field, $countryArray);
 
-                $country = Models\Country::create(Arr::only($countryArray, $countryFields));
-                // states and cities
-                if ($this->isModuleEnabled('states')) {
-                    $this->seedStates($country, $countryArray);
-                }
+                $exist = Models\Country::whereIso2($countryArray['iso2'])->first();
 
-                // timezones
-                if ($this->isModuleEnabled('timezones')) {
-                    $this->seedTimezones($country, $countryArray);
-                }
-                // currencies
-                if ($this->isModuleEnabled('currencies')) {
-                    $this->seedCurrencies($country, $countryArray);
-                }
+                if (!$exist) {
+                    $country = Models\Country::create(Arr::only($countryArray, $countryFields));
+                    // states and cities
+                    if ($this->isModuleEnabled('states')) {
+                        $this->seedStates($country, $countryArray);
+                    }
 
+                    // timezones
+                    if ($this->isModuleEnabled('timezones')) {
+                        $this->seedTimezones($country, $countryArray);
+                    }
+                    // currencies
+                    if ($this->isModuleEnabled('currencies')) {
+                        $this->seedCurrencies($country, $countryArray);
+                    }
+                }
                 $bar->advance();
             }
         }
@@ -117,7 +120,7 @@ class AddCountryCommand extends Command
     {
         if (array_key_exists($module, $this->modules)) {
             // truncate module database table.
-            app($this->modules[$module]['class'])->truncate();
+            //app($this->modules[$module]['class'])->truncate();
             // import json data.
             $moduleSourcePath = __DIR__ . '/../../resources/json/' . $module . '.json';
 
@@ -143,7 +146,7 @@ class AddCountryCommand extends Command
     private function seedStates(Models\Country $country, array $countryArray): void
     {
         // country states and cities
-        $countryStates = Arr::where($this->modules['states']['data'], fn ($state) => $state['country_id'] === $countryArray['id']);
+        $countryStates = Arr::where($this->modules['states']['data'], fn($state) => $state['country_id'] === $countryArray['id']);
         // state schema
         $stateFields = Schema::getColumnListing(config('laravel-world.migrations.states.table_name'));
 
@@ -153,7 +156,7 @@ class AddCountryCommand extends Command
 
             foreach ($stateChunks as $stateArray) {
 
-                $stateArray = array_map(fn ($field) => gettype($field) === 'string' ? trim($field) : $field, $stateArray);
+                $stateArray = array_map(fn($field) => gettype($field) === 'string' ? trim($field) : $field, $stateArray);
 
                 $state = $country
                     ->states()
@@ -162,7 +165,7 @@ class AddCountryCommand extends Command
                 if ($this->isModuleEnabled('cities')) {
                     $stateCities = Arr::where(
                         $this->modules['cities']['data'],
-                        fn ($city) => $city['state_id'] === $stateArray['id']
+                        fn($city) => $city['state_id'] === $stateArray['id']
                     );
 
                     $this->seedCities($country, $state, $stateCities);
@@ -187,7 +190,7 @@ class AddCountryCommand extends Command
 
             foreach ($cityChunks as $cityArray) {
 
-                $cityArray = array_map(fn ($field) => gettype($field) === 'string' ? trim($field) : $field, $cityArray);
+                $cityArray = array_map(fn($field) => gettype($field) === 'string' ? trim($field) : $field, $cityArray);
 
                 $state
                     ->cities()
