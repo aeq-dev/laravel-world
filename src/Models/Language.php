@@ -3,12 +3,13 @@
 namespace Bkfdev\World\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Bkfdev\World\Models\Traits\CacheableEloquent;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Language extends Model
 {
-	//use Cachable;
+	use CacheableEloquent;
 
 	protected $fillable = [
 		'code',

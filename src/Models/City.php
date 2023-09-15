@@ -2,6 +2,7 @@
 
 namespace Bkfdev\World\Models;
 
+use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\CityRelations;
@@ -11,7 +12,7 @@ use Bkfdev\World\Models\Traits\CityRelations;
 class City extends Model
 {
 	use CityRelations;
-	//use Cachable;
+	use CacheableEloquent;
 
 	protected $guarded = [];
 

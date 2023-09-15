@@ -5,13 +5,14 @@ namespace Bkfdev\World\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\CountryRelations;
+use Bkfdev\World\Models\Traits\CacheableEloquent;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Country extends Model
 {
 	use CountryRelations;
-	//use Cachable;
+	use CacheableEloquent;
 
 	protected $guarded = [];
 
