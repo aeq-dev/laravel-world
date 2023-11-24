@@ -4,13 +4,15 @@ namespace Bkfdev\World\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Bkfdev\World\Models\Traits\CacheableEloquent;
+use Spatie\Translatable\HasTranslations;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Language extends Model
 {
 	use CacheableEloquent;
-
+	use HasTranslations;
+	public $translatable = ['name'];
 	protected $fillable = [
 		'code',
 		'name',

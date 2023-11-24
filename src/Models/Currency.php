@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Bkfdev\World\Models\Traits\CurrencyRelations;
+use Spatie\Translatable\HasTranslations;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
@@ -13,7 +14,8 @@ class Currency extends Model
 {
 	use CurrencyRelations;
 	use CacheableEloquent;
-
+	use HasTranslations;
+	public $translatable = ['name'];
 	protected $fillable = [
 		'country_id',
 		'name',

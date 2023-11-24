@@ -6,6 +6,7 @@ use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\CityRelations;
+use Spatie\Translatable\HasTranslations;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
@@ -13,6 +14,8 @@ class City extends Model
 {
 	use CityRelations;
 	use CacheableEloquent;
+	use HasTranslations;
+	public $translatable = ['name'];
 
 	protected $guarded = [];
 
