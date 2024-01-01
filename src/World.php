@@ -40,12 +40,26 @@ class World
         return json_decode(File::get(__DIR__ . '/../resources/json/countries.json'), true);
     }
 
+    public static function getCurrenciesFromJson()
+    {
+        return json_decode(File::get(__DIR__ . '/../resources/json/currencies.json'), true);
+    }
+
     public static function getCountryFromJson($country_code)
     {
         $countries = json_decode(File::get(__DIR__ . '/../resources/json/countries.json'), true);
-        $result =  array_values(Arr::where($countries, function ($value, $key) use ($country_code) {
+        $result = array_values(Arr::where($countries, function ($value, $key) use ($country_code) {
             return $value['iso2'] === $country_code;
         }));
-        return count($result)  ? (object) $result[0] : null;
+        return count($result) ? (object) $result[0] : null;
+    }
+
+    public static function getCurrencyFromJson($currency_code)
+    {
+        $currencies = json_decode(File::get(__DIR__ . '/../resources/json/currencies.json'), true);
+        $result = array_values(Arr::where($currencies, function ($value, $key) use ($currency_code) {
+            return $value['code'] === $currency_code;
+        }));
+        return count($result) ? (object) $result[0] : null;
     }
 }
