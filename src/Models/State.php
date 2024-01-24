@@ -5,7 +5,7 @@ namespace Bkfdev\World\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\StateRelations;
-use Bkfdev\World\Models\Traits\CacheableEloquent;
+//use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Spatie\Translatable\HasTranslations;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
@@ -13,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 class State extends Model
 {
 	use StateRelations;
-	use CacheableEloquent;
+	//use CacheableEloquent;
 	use HasTranslations;
 	public $translatable = ['name'];
 	protected $guarded = [];

@@ -2,7 +2,7 @@
 
 namespace Bkfdev\World\Models;
 
-use Bkfdev\World\Models\Traits\CacheableEloquent;
+//use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Illuminate\Database\Eloquent\Model;
 
 use Bkfdev\World\Models\Traits\CityRelations;
@@ -13,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 class City extends Model
 {
 	use CityRelations;
-	use CacheableEloquent;
+	//use CacheableEloquent;
 	use HasTranslations;
 	public $translatable = ['name'];
 

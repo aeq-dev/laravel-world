@@ -4,14 +4,14 @@ namespace Bkfdev\World\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Bkfdev\World\Models\Traits\CacheableEloquent;
+//use Bkfdev\World\Models\Traits\CacheableEloquent;
 use Bkfdev\World\Models\Traits\TimezoneRelations;
 
 //use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Timezone extends Model
 {
-	use CacheableEloquent;
+	//use CacheableEloquent;
 	use TimezoneRelations;
 
 	protected $fillable = [
