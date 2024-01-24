@@ -107,6 +107,10 @@ class AddCountryCommand extends Command
             $this->seedLanguages();
         }
 
+        if ($this->isModuleEnabled('currencies')) {
+            $this->seedAllCurrencies();
+        }
+
         $bar->finish();
 
         $this->getOutput()->info('Done!');
@@ -249,6 +253,14 @@ class AddCountryCommand extends Command
         // languages
         foreach ($this->modules['languages']['data'] as $language) {
             Models\Language::create($language);
+        }
+    }
+
+    private function seedAllCurrencies(): void
+    {
+        // currencies
+        foreach ($this->modules['currencies']['data'] as $currency) {
+            Models\Currency::create($currency);
         }
     }
 
