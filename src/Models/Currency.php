@@ -14,8 +14,8 @@ class Currency extends Model
 {
 	use CurrencyRelations;
 	//use CacheableEloquent;
-	use HasTranslations;
-	public $translatable = ['name'];
+	//use HasTranslations;
+	//public $translatable = ['name'];
 	protected $fillable = [
 		'country_id',
 		'name',
